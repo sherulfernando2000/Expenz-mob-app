@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter2/constants/colors.dart';
 import 'package:flutter2/constants/constants.dart';
+import 'package:flutter2/screens/main_screen.dart';
+import 'package:flutter2/screens/user_services.dart';
 import 'package:flutter2/widgets/custom_button.dart';
 
 class UserDataScreen extends StatefulWidget {
@@ -152,7 +154,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
                       SizedBox(height: 20),
 
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           if (_formkey.currentState!.validate()) {
                             //form is valid process data
                             String userName = _userNameController.text;
@@ -164,6 +166,26 @@ class _UserDataScreenState extends State<UserDataScreen> {
                             print(
                               "$userName $email $password $confirmPassword",
                             );
+                            //save username and email in device storage
+                            await UserServices.storeUserDetails(
+                              email: email,
+                              password: password,
+                              userName: userName,
+                              confirmPassword: confirmPassword,
+                              context: context,
+                            );
+
+                            if (context.mounted) {
+                               Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context){
+                                  return const MainScreen();
+                                },
+                              ),
+                            );
+                            }
+                           
                           }
                         },
                         child: const CustumButton(
