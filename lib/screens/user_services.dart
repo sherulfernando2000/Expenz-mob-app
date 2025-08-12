@@ -32,4 +32,11 @@ class UserServices {
       err.toString();
     }
   }
+
+  //
+  static Future<bool> checkUserName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userName = prefs.getString("userName");
+    return userName != null;
+  }
 }
