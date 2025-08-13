@@ -24,6 +24,7 @@ class _IncomeExpenceCardState extends State<IncomeExpenceCard> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.45,
+      height: MediaQuery.of(context).size.height * 0.12,
       decoration: BoxDecoration(
         color: widget.bgColor,
         borderRadius: BorderRadius.circular(30),
@@ -33,7 +34,7 @@ class _IncomeExpenceCardState extends State<IncomeExpenceCard> {
         child: Row(
           children: [
             Container(
-              height: MediaQuery.of(context).size.width * 0.15,
+              height: MediaQuery.of(context).size.height * 0.15,
               width: MediaQuery.of(context).size.width * 0.15,
               decoration: BoxDecoration(
                 color: kWhite,
@@ -49,11 +50,9 @@ class _IncomeExpenceCardState extends State<IncomeExpenceCard> {
             const SizedBox(
               width: 10,
             ),
-            SizedBox(
-              height: 10,
+            SizedBox(  
               child: Column(
-                
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     widget.title,
